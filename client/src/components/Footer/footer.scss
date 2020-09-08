@@ -1,0 +1,10 @@
+@import '../../scss/variable';
+@import 'sass-mq/_mq.scss';
+
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: $h-footer;
+  background-color: $gray0;
+}

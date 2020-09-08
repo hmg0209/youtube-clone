@@ -1,0 +1,34 @@
+@import './variable';
+@import './normalize';
+@import './form';
+
+@import 'sass-mq/_mq.scss';
+
+.main {
+  box-sizing: border-box;
+  min-height: calc(100vh - #{$h-header} - #{$h-footer});
+  padding-top: 6rem;
+}
+
+.page-title {
+  margin-top: 0;
+}
+
+.l-wrap {
+  max-width: 1400px;
+  margin: auto;
+
+  &--narrow {
+    max-width: 560px;
+  }
+}
+
+.a11y {
+  overflow: hidden;
+  border: 0;
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  clip: rect(1px, 1px, 1px, 1px);
+  clip-path: inset(50%);
+}

@@ -1,0 +1,15 @@
+@import '../../scss/variable';
+@import 'sass-mq/_mq.scss';
+
+.gnb {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: $h-header;
+
+  &__d1 {
+    & + & {
+      margin-left: 5em;
+    }
+  }
+}

@@ -1,0 +1,39 @@
+@import './variable';
+@import 'sass-mq/_mq.scss';
+
+.btn {
+  padding: 1.2rem;
+  font-size: 1.8rem;
+  color: $white;
+  border: none;
+  background-color: $black;
+
+  &--block {
+    width: 100%;
+    text-align: center;
+  }
+}
+
+.form-g {
+  position: relative;
+
+  & + & {
+    margin-top: 1rem;
+  }
+
+  & > .label {
+    display: block;
+    margin-bottom: .5rem;
+  }
+
+  & > .input {
+    box-sizing: border-box;
+    display: block;
+    width: 100%;
+    height: 40px;
+  }
+}
+
+.func {
+  margin-top: 3rem;
+}
