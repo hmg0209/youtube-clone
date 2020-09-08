@@ -14,11 +14,21 @@
   }
 }
 
+.ta {
+  width: 100%;
+  min-height: 150px;
+}
+
+.select {
+  height: 40px;
+  width: 100%;
+}
+
 .form-g {
   position: relative;
 
   & + & {
-    margin-top: 1rem;
+    margin-top: 2.2rem;
   }
 
   & > .label {
@@ -35,5 +45,5 @@
 }
 
 .func {
-  margin-top: 3rem;
+  margin-top: 6rem;
 }

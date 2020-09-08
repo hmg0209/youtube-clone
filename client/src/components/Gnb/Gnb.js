@@ -1,23 +1,56 @@
 import React from 'react';
-import './gnb.scss';
-import { Link } from 'react-router-dom';
+import axios from 'axios';
 
-const Gnb = () => {
+import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { withRouter } from 'react-router-dom';
+
+import './gnb.scss';
+
+const Gnb = (props) => {
+  const user = useSelector(state => state.user);
+
+  const logout = () => {
+    axios
+      .get('/api/users/logout')
+      .then(res => {
+        if(res.data.success) {
+          console.log(props);
+            props.history.push('/login');
+          } else {
+            alert('로그아웃 실패')
+          }
+      });
+  };
+
   return (
-    <header class="header">
-      <ul class="gnb l-wrap">
-        <li class="gnb__d1">
+    <header className="header">
+      <div className="gnb l-wrap">
+        <span className="gnb__logo">
           <Link to="/">Home</Link>
-        </li>
-        <li class="gnb__d1">
-          <Link to="/login">login</Link>
-        </li>
-        <li class="gnb__d1">
-          <Link to="/register">register</Link>
-        </li>
-      </ul>
+        </span>
+        {user.userData && user.userData.isAuth ? (
+          <ul className="gnb__list">
+            <li className="gnb__d1">
+              <Link to="/video/upload">video</Link>
+            </li>
+            <li className="gnb__d1">
+              <button type="button" onClick={logout}>logout</button>
+            </li>
+          </ul>
+        ) : (
+          <ul className="gnb__list">
+            <li className="gnb__d1">
+              <Link to="/login">login</Link>
+            </li>
+            <li className="gnb__d1">
+              <Link to="/register">register</Link>
+            </li>
+          </ul>
+        )}
+      </div>
     </header>
   );
 };
 
-export default Gnb;
+export default withRouter(Gnb);

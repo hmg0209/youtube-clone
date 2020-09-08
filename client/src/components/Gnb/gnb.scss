@@ -3,13 +3,17 @@
 
 .gnb {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   height: $h-header;
 
+  &__list {
+    display: flex;
+  }
+
   &__d1 {
     & + & {
-      margin-left: 5em;
+      margin-left: 2rem;
     }
   }
 }

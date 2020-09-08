@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { loginUser } from '../_actions/user_action';
+import { loginUser } from '../../_actions/user_action';
 import { withRouter } from 'react-router-dom';
 
 const Login = (props) => {
@@ -36,19 +36,19 @@ const Login = (props) => {
   }
 
   return (
-    <div class="l-wrap l-wrap--narrow">
+    <div className="l-wrap l-wrap--narrow">
       <h1>Login</h1>
       <form onSubmit={loginSubmit}>
-        <div class="form-g">
-          <label class="label">email</label>
-          <input type="email" class="input" value={email} onChange={changeEmail}/>
+        <div className="form-g">
+          <label className="label">email</label>
+          <input type="email" className="input" value={email} onChange={changeEmail}/>
         </div>
-        <div class="form-g">
-          <label class="label">password</label>
-          <input type="password" class="input" value={password} onChange={changePassword}/>
+        <div className="form-g">
+          <label className="label">password</label>
+          <input type="password" className="input" value={password} onChange={changePassword}/>
         </div>
-        <div class="func">
-          <button type="submit" class="btn btn--block">login</button>
+        <div className="func">
+          <button type="submit" className="btn btn--block">login</button>
         </div>
       </form>
     </div>

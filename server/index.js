@@ -96,6 +96,10 @@ app.get('/api/users/logout', auth, (req, res) => {
   });
 });
 
+
+// app.use('/api/video', require('./routes/video'));
+app.use('/api/video', require('./routes/video'));
+
 const port = 5000;
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`);

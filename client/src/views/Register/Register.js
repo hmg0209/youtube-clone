@@ -1,7 +1,6 @@
-
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { registerUser } from '../_actions/user_action';
+import { registerUser } from '../../_actions/user_action';
 import { withRouter } from 'react-router-dom';
 
 const Register = (props) => {
@@ -52,27 +51,27 @@ const Register = (props) => {
   }
 
   return (
-    <div class="l-wrap l-wrap--narrow">
+    <div className="l-wrap l-wrap--narrow">
       <h1>Register</h1>
       <form onSubmit={registerSubmit}>
-        <div class="form-g">
-          <label class="label">Email</label>
-          <input type="email" class="input" value={email} onChange={changeEmail}/>
+        <div className="form-g">
+          <label className="label">Email</label>
+          <input type="email" className="input" value={email} onChange={changeEmail}/>
         </div>
-        <div class="form-g">
-          <label class="label">Name</label>
-          <input type="text" class="input" value={name} onChange={changeName}/>
+        <div className="form-g">
+          <label className="label">Name</label>
+          <input type="text" className="input" value={name} onChange={changeName}/>
         </div>
-        <div class="form-g">
-          <label class="label">Password</label>
-          <input type="password" class="input" value={password} onChange={changePassword}/>
+        <div className="form-g">
+          <label className="label">Password</label>
+          <input type="password" className="input" value={password} onChange={changePassword}/>
         </div>
-        <div class="form-g">
-          <label class="label">Comfirm Password</label>
-          <input type="password" class="input" value={comfirmPassword} onChange={changeConfrimPassword}/>
+        <div className="form-g">
+          <label className="label">Comfirm Password</label>
+          <input type="password" className="input" value={comfirmPassword} onChange={changeConfrimPassword}/>
         </div>
-        <div class="func">
-          <button type="submit" class="input" class="btn btn--block">sign up</button>
+        <div className="func">
+          <button type="submit" className="btn btn--block">sign up</button>
         </div>
       </form>
     </div>

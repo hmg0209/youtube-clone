@@ -26,7 +26,7 @@ export default function(Component, option, adminRoute = null) {
             }
           }
         });
-    }, []);
+    }, [dispatch, props.history]);
 
     return (
       <Component/>

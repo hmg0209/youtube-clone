@@ -2,9 +2,10 @@ import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import './index.scss';
 
-import Landing from './views/Landing';
-import Login from './views/Login';
-import Register from './views/Register';
+import Landing from './views/Landing/Landing';
+import Login from './views/Login/Login';
+import Register from './views/Register/Register';
+import VideoUpload from './views/VideoUpload/VideoUpload';
 
 import Gnb from './components/Gnb/Gnb';
 import Footer from './components/Footer/Footer';
@@ -15,13 +16,14 @@ function App() {
   return (
     <Router>
       <Gnb />
-      <Switch>
-        <div class="main">
+      <div className="main">
+        <Switch>
           <Route exact path="/" component={Auth(Landing, null)} />
           <Route exact path="/login" component={Auth(Login, false)} />
           <Route exact path="/register" component={Auth(Register, false)} />
-        </div>
-      </Switch>
+          <Route exact path="/video/upload" component={Auth(VideoUpload, true)} />
+        </Switch>
+      </div>
       <Footer />
     </Router>
   );
