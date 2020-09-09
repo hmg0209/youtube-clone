@@ -97,8 +97,9 @@ app.get('/api/users/logout', auth, (req, res) => {
 });
 
 
-// app.use('/api/video', require('./routes/video'));
 app.use('/api/video', require('./routes/video'));
+app.use('/uploads', express.static('uploads'));
+
 
 const port = 5000;
 app.listen(port, () => {

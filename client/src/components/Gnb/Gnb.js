@@ -15,7 +15,6 @@ const Gnb = (props) => {
       .get('/api/users/logout')
       .then(res => {
         if(res.data.success) {
-          console.log(props);
             props.history.push('/login');
           } else {
             alert('로그아웃 실패')

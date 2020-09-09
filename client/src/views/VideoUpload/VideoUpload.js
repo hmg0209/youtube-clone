@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import './videoUpload.scss';
 import Dropzone from 'react-dropzone';
 import axios from 'axios';
+import { useSelector } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 
 const Catogory = [
   { value: 0, label: 'Film & Animation' },
@@ -11,11 +13,16 @@ const Catogory = [
   { value: 0, label: 'Sports' },
 ];
 
-function VideoUpload() {
+function VideoUpload(props) {
+  const user = useSelector((state) => state.user);
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [privacy, setPrivacy] = useState(0);
-  const [catagory, setCatagory] = useState('Film & Animation');
+  const [category, setCategory] = useState('Film & Animation');
+
+  const [filePath, setFilePath] = useState('');
+  const [duration, setDuration] = useState('');
+  const [thumbnailPath, setThumbnailPath] = useState('');
 
   const changeTitle = (e) => {
     setTitle(e.currentTarget.value);
@@ -30,49 +37,88 @@ function VideoUpload() {
   };
 
   const changeCatagory = (e) => {
-    setCatagory(e.currentTarget.value);
+    setCategory(e.currentTarget.value);
   };
 
   const onDrop = (file) => {
-    let formData = new FormData;
+    let formData = new FormData();
 
     const config = {
-      header: {'content-type': 'multipart/form-data'}
-    }
+      header: { 'content-type': 'multipart/form-data' },
+    };
 
-    formData.append('file',file[0]);
+    formData.append('file', file[0]);
 
-    axios
-      .post('/api/video/uploadfiles', formData, config)
-      .then(res => {
-        console.log(res);
+    axios.post('/api/video/uploadfile', formData, config).then((res) => {
+      if (res.data.success) {
+        let videoInfo = {
+          url: res.data.url,
+          fileName: res.data.fileName,
+        };
+        setFilePath(res.data.url);
 
-        if (res.data.success) {
+        axios.post('/api/video/thumbnail', videoInfo).then((res) => {
+          if (res.data.success) {
+            setDuration(res.data.duration);
+            setThumbnailPath(res.data.thumbnailPath);
+          } else {
+            alert('썸네일 생성 실패');
+          }
+        });
+      } else {
+        alert('비디오 업로드 실패');
+      }
+    });
+  };
 
-        } else {
-          alert('비디오 업로드 실패');
-        }
-      })
+  const onSubmit = (e) => {
+    e.preventDefault();
 
-  }
+    console.log(duration);
+
+    const videoInfo = {
+      writer: user.userData._id,
+      title,
+      description,
+      privacy,
+      filePath,
+      category,
+      duration,
+      thumbnailPath,
+    };
+    
+
+    axios.post('/api/video/uploadVideo', videoInfo)
+    .then(res => {
+      if(res.data.success) {
+        alert('비디오 업로드 성공');
+        props.history.push('/');
+      } else {
+        alert ('비디오 업로드 실패');
+      }
+    });
+  };
 
   return (
     <div className="l-wrap l-wrap--narrow">
       <h1 className="page-title">Upload video</h1>
-      <form>
-        <div className="form-g">
+      <form onSubmit={onSubmit}>
+        <div className="dropzone">
           <Dropzone onDrop={onDrop} multiple={false} maxSize={80000000000}>
             {({ getRootProps, getInputProps }) => (
-              <div className="dropzone" {...getRootProps()}>
+              <div className="dropzone__input" {...getRootProps()}>
                 <input {...getInputProps()} />
               </div>
             )}
           </Dropzone>
-          {/* {Thumbnail !== '' && (
-            <div>
-              <img src={`http://localhost:5000/${Thumbnail}`} alt="haha" />
+          {thumbnailPath && (
+            <div className="dropzone__thumbnail">
+              <img
+                src={`http://localhost:5000/${thumbnailPath}`}
+                alt="thumbnail"
+              />
             </div>
-          )} */}
+          )}
         </div>
         <div className="form-g">
           <label className="label">Title</label>
@@ -122,4 +168,4 @@ function VideoUpload() {
   );
 }
 
-export default VideoUpload;
+export default withRouter(VideoUpload);
