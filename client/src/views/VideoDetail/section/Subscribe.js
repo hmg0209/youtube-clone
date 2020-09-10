@@ -1,11 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { useSelector } from 'react-redux';
 
 function Subscribe(props) {
   const [subscribeNumber, setSubscribeNumber] = useState(0);
   const [subscribed, setSubscribed] = useState(false);
-  const user = useSelector((state) => state.user);
 
   useEffect(() => {
     const writerInfo = {
@@ -22,7 +20,7 @@ function Subscribe(props) {
 
     const subscribedInfo = {
       writerId: props.writerId,
-      userId: user.userData._id,
+      userId: props.userId,
     };
 
     axios.post('/api/subscribe/subscribed', subscribedInfo).then((res) => {
@@ -37,7 +35,7 @@ function Subscribe(props) {
   const onsSubscribe = () => {
     let subscribeInfo = {
       witerId: props.writerId,
-      userId: user.userData._id,
+      userId: props.userId,
     };
 
     if (subscribed) {

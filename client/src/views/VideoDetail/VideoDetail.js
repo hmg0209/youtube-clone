@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { withRouter } from 'react-router-dom';
-import { useSelector } from 'react-redux';
 
 import SideVideo from './section/SideVideo';
 import Subscribe from './section/Subscribe';
@@ -10,7 +9,7 @@ import './video-detail.scss';
 
 function VideoDetial(props) {
   const [videoDetail, setVideoDetail] = useState([]);
-  const user = useSelector((state) => state.user);
+  const userId = localStorage.getItem('userId');
 
   useEffect(() => {
     const videoId = props.match.params.videoId;
@@ -51,8 +50,8 @@ function VideoDetial(props) {
               <button>
                 싫어요<span>0</span>
               </button>
-              {videoDetail.writer._id !== user.userData._id && (
-                <Subscribe writerId={videoDetail.writer._id} />
+              {videoDetail.writer._id !== userId && (
+                <Subscribe writerId={videoDetail.writer._id} userId={userId} />
               )}
             </div>
           </div>

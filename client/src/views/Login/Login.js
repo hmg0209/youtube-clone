@@ -29,6 +29,7 @@ const Login = (props) => {
       .then(res => {
         if (res.payload.loginSuccess) {
           props.history.push('/');
+          localStorage.setItem('userId', res.payload.userId);
         } else {
           alert('Error');
         }

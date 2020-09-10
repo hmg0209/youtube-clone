@@ -7,13 +7,20 @@ function Subscription() {
   const [videos, setVideos] = useState([]);
 
   useEffect(() => {
-    axios.get('/api/video/getVideo').then((res) => {
-      if (res.data.success) {
-        setVideos(res.data.videos);
-      } else {
-        alert('비디오 가져오기 실패');
-      }
-    });
+    const subscriptionInfo = {
+      userId: localStorage.getItem('userId'),
+    };
+
+
+    axios
+      .post('/api/video/getSubscriptionVideos', subscriptionInfo)
+      .then((res) => {
+        if (res.data.success) {
+          setVideos(res.data.videos);
+        } else {
+          alert('비디오 가져오기 실패');
+        }
+      });
   }, []);
 
   return (
@@ -21,9 +28,7 @@ function Subscription() {
       <h1 className="page-title">구독</h1>
       <div className="card-list">
         {videos.map((video, i) => {
-          return (
-            <Card key={i} video={video}/>
-          )
+          return <Card key={i} video={video} />;
         })}
       </div>
     </div>

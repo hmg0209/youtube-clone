@@ -16,6 +16,7 @@ const Gnb = (props) => {
       .then(res => {
         if(res.data.success) {
             props.history.push('/login');
+            localStorage.removeItem('userId')
           } else {
             alert('로그아웃 실패')
           }
@@ -31,10 +32,10 @@ const Gnb = (props) => {
         {user.userData && user.userData.isAuth ? (
           <ul className="gnb__list">
             <li className="gnb__d1">
-              <Link to="/subscription">구독 페이지</Link>
+              <Link to="/subscription">subscription</Link>
             </li>
             <li className="gnb__d1">
-              <Link to="/video/upload">비디오 업로드</Link>
+              <Link to="/video/upload">video</Link>
             </li>
             <li className="gnb__d1">
               <button type="button" onClick={logout}>logout</button>
