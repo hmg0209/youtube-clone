@@ -31,7 +31,10 @@ const Gnb = (props) => {
         {user.userData && user.userData.isAuth ? (
           <ul className="gnb__list">
             <li className="gnb__d1">
-              <Link to="/video/upload">video</Link>
+              <Link to="/subscription">구독 페이지</Link>
+            </li>
+            <li className="gnb__d1">
+              <Link to="/video/upload">비디오 업로드</Link>
             </li>
             <li className="gnb__d1">
               <button type="button" onClick={logout}>logout</button>

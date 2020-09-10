@@ -1,9 +1,11 @@
+@import '../../scss/variable';
+@import 'sass-mq/_mq.scss';
+
 .detail {
   display: flex;
 
   &__section {
     width: 70%;
-    background-color: pink;
   }
 
   &__video {
@@ -15,6 +17,12 @@
   &__desc {
     display: flex;
     justify-content: space-between;
+  }
+
+  //
+  &__aside {
+    width: 30%;
+    background-color: palegoldenrod;
   }
 }
 
@@ -33,5 +41,30 @@
 
   &__name {
     display: block;
+  }
+}
+
+//
+.comment {
+  margin-top: 6rem;
+  padding-top: 2rem;
+  border-top: 1px solid $black;
+
+  &__num {
+    margin-bottom: 1rem;
+  }
+
+  &__input {
+    display: flex;
+  }
+
+  &__ta {
+    width: calc(100% - 170px);
+  }
+
+  &__btn {
+    width: 170px;
+    color: $white;
+    background-color: $black;
   }
 }

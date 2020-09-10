@@ -12,11 +12,21 @@
     width: 100%;
     text-align: center;
   }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: default;
+  }
 }
 
 .ta {
+  box-sizing: border-box;
   width: 100%;
   min-height: 150px;
+
+  &-box {
+    font-size: 0;
+  }
 }
 
 .select {

@@ -7,6 +7,7 @@ import Login from './views/Login/Login';
 import Register from './views/Register/Register';
 import VideoUpload from './views/VideoUpload/VideoUpload';
 import VideoDetail from './views/VideoDetail/VideoDetail';
+import Subscription from './views/Subscription/Subscription';
 
 import Gnb from './components/Gnb/Gnb';
 import Footer from './components/Footer/Footer';
@@ -24,6 +25,7 @@ function App() {
           <Route exact path="/register" component={Auth(Register, false)} />
           <Route exact path="/video/upload" component={Auth(VideoUpload, true)} />
           <Route exact path="/video/:videoId" component={Auth(VideoDetail, null)} />
+          <Route exact path="/subscription" component={Auth(Subscription, true)} />
         </Switch>
       </div>
       <Footer />

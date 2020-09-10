@@ -14,6 +14,7 @@ function Card(props) {
           <img
             className="card__img"
             src={`http://localhost:5000/${video.thumbnailPath}`}
+            alt="썸네일"
           />
           <span className="card__duration">
             {minute}:{sec}

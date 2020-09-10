@@ -1,0 +1,16 @@
+@import '../../../scss/variable.scss';
+@import 'sass-mq/_mq.scss';
+
+.side-video {
+  .item {
+    &__link {
+      display: flex;
+    }
+
+    &__img-box {
+      display: inline-block;
+      width: 50%;
+      background: rosybrown;
+    }
+  }
+}

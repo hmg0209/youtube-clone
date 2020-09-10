@@ -52,7 +52,7 @@ const Register = (props) => {
 
   return (
     <div className="l-wrap l-wrap--narrow">
-      <h1>Register</h1>
+      <h1 className="page-title">Register</h1>
       <form onSubmit={registerSubmit}>
         <div className="form-g">
           <label className="label">Email</label>

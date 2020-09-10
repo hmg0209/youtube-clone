@@ -56,7 +56,7 @@ router.post('/uploadVideo', (req, res) => {
   });
 });
 
-// 비디오 몽고디비에서 가져오기
+// 전체 비디오 몽고디비에서 가져오기
 router.get('/getVideo', (req, res) => {
   Video.find()
     .populate('writer')
@@ -91,6 +91,18 @@ router.post('/thumbnail', (req, res) => {
       folder: 'uploads/thumbnails',
       size: '320x240',
       filename: 'thumbnail-%b.png',
+    });
+});
+
+// 상세페이지
+
+// 비디오 가져오기
+router.post('/getDetailVideo', (req, res) => {
+  Video.findOne({ '_id': req.body.videoId })
+    .populate('writer')
+    .exec((err, videoDetail) => {
+      if (err) return res.status(400).send(err);
+      return res.status(200).json({ success: true, videoDetail });
     });
 });
 
