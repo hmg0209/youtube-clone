@@ -2,12 +2,17 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
 import CommentItem from './CommentItem';
+import ReplyComment from './ReplyComment';
 
 function Comment(props) {
   const [comment, setComment] = useState('');
   const [commentList, setCommentList] = useState([]);
   const videoId = props.videoId;
   const videoInfo = { videoId };
+
+  const refreshCommentList = (newComment) => {
+    setCommentList(commentList.concat(newComment));
+  };
 
   useEffect(() => {
     axios.post('/api/comment/getComments', videoInfo).then((res) => {
@@ -33,7 +38,8 @@ function Comment(props) {
 
     axios.post('/api/comment/saveComment', commentInfo).then((res) => {
       if (res.data.success) {
-        //
+        refreshCommentList(res.data.result);
+        setComment('');
       } else {
         alert('코멘트 저장 실패');
       }
@@ -62,7 +68,21 @@ function Comment(props) {
       <ul className="comment__list">
         {commentList &&
           commentList.map(
-            (comment, i) => !comment.responseTo && <CommentItem comment={comment} key={i} />
+            (comment, i) =>
+              !comment.responseTo && (
+                <React.Fragment>
+                  <CommentItem
+                    comment={comment}
+                    refreshCommentList={refreshCommentList}
+                    key={i}
+                  />
+                  <ReplyComment
+                    commentList={commentList}
+                    parentCommentId={comment._id}
+                    refreshCommentList={refreshCommentList}
+                  />
+                </React.Fragment>
+              )
           )}
       </ul>
     </div>

@@ -24,7 +24,9 @@ function CommentItem(props) {
     };
 
     axios.post('/api/comment/saveComment', subCommentInfo).then((res) => {
+      console.log(res);
       if (res.data.success) {
+        props.refreshCommentList(res.data.result);
       } else {
         alert('코멘트 저장 실패');
       }
