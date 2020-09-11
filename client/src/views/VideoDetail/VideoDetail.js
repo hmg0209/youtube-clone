@@ -4,15 +4,17 @@ import { withRouter } from 'react-router-dom';
 
 import SideVideo from './section/SideVideo';
 import Subscribe from './section/Subscribe';
+import Comment from './section/Comment';
 
 import './video-detail.scss';
 
 function VideoDetial(props) {
   const [videoDetail, setVideoDetail] = useState([]);
+  
   const userId = localStorage.getItem('userId');
+  const videoId = props.match.params.videoId;
 
   useEffect(() => {
-    const videoId = props.match.params.videoId;
     let videoInfo = { videoId };
 
     axios.post('/api/video/getDetailVideo', videoInfo).then((res) => {
@@ -55,27 +57,7 @@ function VideoDetial(props) {
               )}
             </div>
           </div>
-          <div className="comment">
-            <div className="comment__num">
-              댓글 수 <span>0</span>
-            </div>
-            <div className="comment__input">
-              <div className="comment__ta ta-box">
-                <textarea
-                  className="ta"
-                  type="text"
-                  // value={description}
-                  // onChange={changeDescription}
-                ></textarea>
-              </div>
-              <button className="comment__btn" type="submit">
-                댓글달기
-              </button>
-            </div>
-            <ul className="comment__list">
-              <li className="comment__item"></li>
-            </ul>
-          </div>
+          <Comment videoId={videoId}/>
         </section>
 
         <aside className="detail__aside">

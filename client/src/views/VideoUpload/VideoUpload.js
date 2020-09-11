@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import './videoUpload.scss';
 import Dropzone from 'react-dropzone';
 import axios from 'axios';
-import { useSelector } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 
 const Catogory = [
@@ -14,7 +13,6 @@ const Catogory = [
 ];
 
 function VideoUpload(props) {
-  const user = useSelector((state) => state.user);
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [privacy, setPrivacy] = useState(0);
@@ -74,10 +72,8 @@ function VideoUpload(props) {
   const onSubmit = (e) => {
     e.preventDefault();
 
-    console.log(duration);
-
     const videoInfo = {
-      writer: user.userData._id,
+      writer: localStorage.getItem('userId'),
       title,
       description,
       privacy,

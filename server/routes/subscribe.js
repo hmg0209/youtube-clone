@@ -53,7 +53,7 @@ router.post('/subscribe', (req, res) => {
   subscribe.save((err, doc)=> {
     if(err) return res.json({success: false, err});
 
-    res.status(200).json({success: true});
+    res.status(200).json({success: true, doc});
   })
 });
 

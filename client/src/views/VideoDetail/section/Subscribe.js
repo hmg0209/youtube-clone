@@ -34,7 +34,7 @@ function Subscribe(props) {
 
   const onsSubscribe = () => {
     let subscribeInfo = {
-      witerId: props.writerId,
+      writerId: props.writerId,
       userId: props.userId,
     };
 

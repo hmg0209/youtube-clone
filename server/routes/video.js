@@ -1,10 +1,10 @@
 const express = require('express');
 const router = express.Router();
 const { Video } = require('../models/Video');
+const { Subscriber } = require('../models/Subscriber');
 
 const multer = require('multer');
 const ffmpeg = require('fluent-ffmpeg');
-const Subscriber = require('../models/Subscriber');
 
 //Storage Multer Config
 let storage = multer.diskStorage({
@@ -48,7 +48,6 @@ router.post('/uploadfile', (req, res) => {
 // 비디오 정보 몽고디비에 저장.
 router.post('/uploadVideo', (req, res) => {
   const video = new Video(req.body);
-  console.log(req.body);
 
   video.save((err, doc) => {
     if (err) return res.json({ success: false, err });
@@ -78,7 +77,6 @@ router.post('/thumbnail', (req, res) => {
     duration = metadata.format.duration;
   });
 
-  console.log(req.body.url);
   // 썸네일 생성
   ffmpeg(req.body.url)
     .on('filenames', function (filenames) {
@@ -109,20 +107,25 @@ router.post('/getDetailVideo', (req, res) => {
 // 구독 페이지
 // 비디오 가져오기
 router.post('/getSubscriptionVideos', (req, res) => {
-  
   Subscriber.find({
-    userId: req.body.userId
-  }).exec((err, subscribe) => {
+    userId: req.body.userId,
+  }).exec((err, subscribeInfo) => {
     if (err) return res.status(400).send(err);
 
-    console.log(subscribe);
+    let subscribedUser = [];
 
+    subscribeInfo.map((subscriber, i) => {
+      subscribedUser.push(subscriber.writerId);
+    });
 
-  //   let subscribedUser = [];
-
-  //     subscriberInfo.map((subscriber, i) => {
-  //       subscribedUser.push(subscriber.writerId);
-  //     });
+    // 찾은 사람들의 모든 비디오를 가져오기
+    // $in: mongodb의 메서드
+    Video.find({ writer: { $in: subscribedUser } })
+      .populate('writer')
+      .exec((err, videos) => {
+        if (err) return res.status(400).send(err);
+        res.status(200).json({ success: true, videos });
+      });
   });
 });
 
