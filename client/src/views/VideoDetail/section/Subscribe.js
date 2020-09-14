@@ -30,7 +30,7 @@ function Subscribe(props) {
         alert('구독 데이터 읽어오기 실패');
       }
     });
-  }, []);
+  }, [props.userId, props.writerId]);
 
   const onsSubscribe = () => {
     let subscribeInfo = {

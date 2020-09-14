@@ -24,9 +24,9 @@ function CommentItem(props) {
     };
 
     axios.post('/api/comment/saveComment', subCommentInfo).then((res) => {
-      console.log(res);
       if (res.data.success) {
         props.refreshCommentList(res.data.result);
+        setComment('');
       } else {
         alert('코멘트 저장 실패');
       }
@@ -34,7 +34,7 @@ function CommentItem(props) {
   };
 
   return (
-    <li className="comment__item">
+    <div className="comment__item">
       <div className="user-box">
         <span className="user__img"></span>
         <div className="user__cont">
@@ -59,7 +59,7 @@ function CommentItem(props) {
           </button>
         </form>
       )}
-    </li>
+    </div>
   );
 }
 

@@ -22,7 +22,7 @@ function Comment(props) {
         alert('댓글 가져오기 실패');
       }
     });
-  }, []);
+  }, [videoInfo]);
 
   const changeComment = (e) => {
     setComment(e.currentTarget.value);
@@ -65,7 +65,7 @@ function Comment(props) {
         </button>
       </form>
 
-      <ul className="comment__list">
+      <div className="comment__list">
         {commentList &&
           commentList.map(
             (comment, i) =>
@@ -75,16 +75,17 @@ function Comment(props) {
                     comment={comment}
                     refreshCommentList={refreshCommentList}
                     key={i}
-                  />
+                  >
+                  </CommentItem>
                   <ReplyComment
-                    commentList={commentList}
-                    parentCommentId={comment._id}
-                    refreshCommentList={refreshCommentList}
-                  />
+                      commentList={commentList}
+                      parentCommentId={comment._id}
+                      refreshCommentList={refreshCommentList}
+                    />
                 </React.Fragment>
               )
           )}
-      </ul>
+      </div>
     </div>
   );
 }

@@ -24,7 +24,7 @@ function VideoDetial(props) {
         alert('비디오 정보 가져오기 실패');
       }
     });
-  }, []);
+  }, [videoId]);
 
   if (videoDetail.writer) {
     return (

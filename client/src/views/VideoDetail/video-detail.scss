@@ -67,4 +67,13 @@
     color: $white;
     background-color: $black;
   }
+
+  
+  &__item {
+    // padding-left:40px;
+  }
+
+  &__reply {
+    padding-left:40px;
+  }
 }
