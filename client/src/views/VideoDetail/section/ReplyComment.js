@@ -22,7 +22,7 @@ function ReplyComment(props) {
   };
 
   return (
-    <div class="comment__reply">
+    <div className="comment__reply">
       {ChildCommentNumber > 0 && (
         <button type="button" onClick={handleChange}>
           View {ChildCommentNumber} more comment(s)
@@ -31,20 +31,19 @@ function ReplyComment(props) {
 
       {OpenReplyComments &&
         props.commentList.map((comment, i) => (
-          <React.Fragment>
+          <React.Fragment key={i}>
             {comment.responseTo === props.parentCommentId && (
-              <div key={i}>
+              <React.Fragment>
                 <CommentItem
                   comment={comment}
                   refreshCommentList={props.refreshCommentList}
-                  key={i}
                 />
                 <ReplyComment
                   commentList={props.commentList}
                   parentCommentId={comment._id}
                   refreshCommentList={props.refreshCommentList}
                 />
-              </div>
+              </React.Fragment>
             )}
           </React.Fragment>
         ))}

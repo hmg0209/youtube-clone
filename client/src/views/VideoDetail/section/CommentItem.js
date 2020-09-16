@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
+import LikeBtn from '../section/LikeBtn';
+
 function CommentItem(props) {
   const [openReply, setOpenReply] = useState(false);
   const [comment, setComment] = useState('');
@@ -24,7 +26,9 @@ function CommentItem(props) {
     };
 
     axios.post('/api/comment/saveComment', subCommentInfo).then((res) => {
+      console.log(res);
       if (res.data.success) {
+        console.log(props);
         props.refreshCommentList(res.data.result);
         setComment('');
       } else {
@@ -41,6 +45,10 @@ function CommentItem(props) {
           <span className="user__name">{commentInfo.writer.name}</span>
           <span className="user__desc">{commentInfo.content}</span>
           <button onClick={clickReplay}>댓글</button>
+          <LikeBtn
+            commentId={commentInfo._id}
+            userId={localStorage.getItem('userId')}
+          />
         </div>
       </div>
 

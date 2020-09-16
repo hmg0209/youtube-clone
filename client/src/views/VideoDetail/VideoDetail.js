@@ -5,12 +5,13 @@ import { withRouter } from 'react-router-dom';
 import SideVideo from './section/SideVideo';
 import Subscribe from './section/Subscribe';
 import Comment from './section/Comment';
+import LikeButton from './section/LikeBtn';
 
 import './video-detail.scss';
 
 function VideoDetial(props) {
   const [videoDetail, setVideoDetail] = useState([]);
-  
+
   const userId = localStorage.getItem('userId');
   const videoId = props.match.params.videoId;
 
@@ -46,18 +47,17 @@ function VideoDetial(props) {
               </div>
             </div>
             <div className="detail__util">
-              <button>
-                좋아요<span>0</span>
-              </button>
-              <button>
-                싫어요<span>0</span>
-              </button>
+              <LikeButton
+                video
+                userId={localStorage.getItem('userId')}
+                videoId={videoId}
+              />
               {videoDetail.writer._id !== userId && (
                 <Subscribe writerId={videoDetail.writer._id} userId={userId} />
               )}
             </div>
           </div>
-          <Comment videoId={videoId}/>
+          <Comment videoId={videoId} />
         </section>
 
         <aside className="detail__aside">

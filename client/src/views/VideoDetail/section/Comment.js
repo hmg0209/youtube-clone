@@ -70,18 +70,16 @@ function Comment(props) {
           commentList.map(
             (comment, i) =>
               !comment.responseTo && (
-                <React.Fragment>
+                <React.Fragment key={i}>
                   <CommentItem
                     comment={comment}
                     refreshCommentList={refreshCommentList}
-                    key={i}
-                  >
-                  </CommentItem>
+                  ></CommentItem>
                   <ReplyComment
-                      commentList={commentList}
-                      parentCommentId={comment._id}
-                      refreshCommentList={refreshCommentList}
-                    />
+                    commentList={commentList}
+                    parentCommentId={comment._id}
+                    refreshCommentList={refreshCommentList}
+                  />
                 </React.Fragment>
               )
           )}
