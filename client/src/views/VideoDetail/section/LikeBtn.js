@@ -44,7 +44,6 @@ function LikeBtn(props) {
   }, []);
 
   const clickLike = (e) => { 
-    console.log(liked); 
     if (!liked) {
       axios.post('/api/like/upLike', likeInfo).then((res) => {
         if (res.data.success) {

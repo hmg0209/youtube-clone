@@ -4,6 +4,12 @@
 
 @import 'sass-mq/_mq.scss';
 
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;500&display=swap');
+
+body {
+  font-family: 'Noto Sans KR', sans-serif;
+}
+
 .main {
   box-sizing: border-box;
   min-height: calc(100vh - #{$h-header} - #{$h-footer});

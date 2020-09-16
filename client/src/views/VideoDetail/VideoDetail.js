@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { withRouter } from 'react-router-dom';
 
+import Profile from '../../components/Profile/Profile';
 import SideVideo from './section/SideVideo';
 import Subscribe from './section/Subscribe';
 import Comment from './section/Comment';
@@ -40,7 +41,7 @@ function VideoDetial(props) {
           </div>
           <div className="detail__desc">
             <div className="user-box">
-              <span className="user__img"></span>
+              <Profile writer={videoDetail.writer}/>
               <div className="user__cont">
                 <span className="user__name">{videoDetail.writer.name}</span>
                 <span className="user__desc">{videoDetail.description}</span>

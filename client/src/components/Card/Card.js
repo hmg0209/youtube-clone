@@ -1,6 +1,9 @@
 import React from 'react';
-import './card.scss';
 import moment from 'moment';
+
+import Profile from '../Profile/Profile';
+
+import './card.scss';
 
 function Card(props) {
   const video = props.video;
@@ -20,19 +23,19 @@ function Card(props) {
             {minute}:{sec}
           </span>
         </span>
-
-        <div className="card__cont">
-          <span className="card__user-img"></span>
-          <div className="card__detail">
-            <h2 className="card__title h6">{video.title}</h2>
-            <small className="card__user">{video.writer.name}</small>
-            <small className="card__views">조회수 {video.views}회</small>
-            <small className="card__date">
-              {moment(video.createdAt).format('MMM Do YY')}
-            </small>
-          </div>
-        </div>
       </a>
+
+      <div className="card__cont">
+        <Profile writer={video.writer} />
+        <div className="card__detail">
+          <h2 className="card__title h6">{video.title}</h2>
+          <small className="card__user">{video.writer.name}</small>
+          <small className="card__views">조회수 {video.views}회</small>
+          <small className="card__date">
+            {moment(video.createdAt).format('MMM Do YY')}
+          </small>
+        </div>
+      </div>
     </div>
   );
 }

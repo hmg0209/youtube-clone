@@ -13,19 +13,19 @@ const Register = (props) => {
 
   const changeEmail = (e) => {
     setEmail(e.currentTarget.value);
-  }
+  };
 
   const changePassword = (e) => {
     setPassword(e.currentTarget.value);
-  }
+  };
 
   const changeName = (e) => {
     setName(e.currentTarget.value);
-  }
+  };
 
   const changeConfrimPassword = (e) => {
     setComfirmPassword(e.currentTarget.value);
-  }
+  };
 
   const registerSubmit = (e) => {
     e.preventDefault();
@@ -34,20 +34,27 @@ const Register = (props) => {
       email,
       password,
       name,
-    }
+      profileColor: MakeRandomNum(),
+      profilePattern: MakeRandomNum(),
+    };
 
-    if ( password !== comfirmPassword ) {
+
+    if (password !== comfirmPassword) {
       return alert('비밀번호와 비밀번호 확인은 같아야 합니다.');
     }
 
-    dispatch(registerUser(body))
-      .then(res => {
-        if (res.payload.success) {
-          props.history.push('/login');
-        } else {
-          alert('Error');
-        }
-      });
+    dispatch(registerUser(body)).then((res) => {
+      if (res.payload.success) {
+        props.history.push('/login');
+      } else {
+        alert('Error');
+      }
+    });
+  };
+
+  function MakeRandomNum() {
+    // 1~10 난수 생성
+    return Math.floor(Math.random() * 10 + 1);
   }
 
   return (
@@ -56,26 +63,48 @@ const Register = (props) => {
       <form onSubmit={registerSubmit}>
         <div className="form-g">
           <label className="label">Email</label>
-          <input type="email" className="input" value={email} onChange={changeEmail}/>
+          <input
+            type="email"
+            className="input"
+            value={email}
+            onChange={changeEmail}
+          />
         </div>
         <div className="form-g">
           <label className="label">Name</label>
-          <input type="text" className="input" value={name} onChange={changeName}/>
+          <input
+            type="text"
+            className="input"
+            value={name}
+            onChange={changeName}
+          />
         </div>
         <div className="form-g">
           <label className="label">Password</label>
-          <input type="password" className="input" value={password} onChange={changePassword}/>
+          <input
+            type="password"
+            className="input"
+            value={password}
+            onChange={changePassword}
+          />
         </div>
         <div className="form-g">
           <label className="label">Comfirm Password</label>
-          <input type="password" className="input" value={comfirmPassword} onChange={changeConfrimPassword}/>
+          <input
+            type="password"
+            className="input"
+            value={comfirmPassword}
+            onChange={changeConfrimPassword}
+          />
         </div>
         <div className="func">
-          <button type="submit" className="btn btn--block">sign up</button>
+          <button type="submit" className="btn btn--block">
+            sign up
+          </button>
         </div>
       </form>
     </div>
-  )
-}
+  );
+};
 
 export default withRouter(Register);

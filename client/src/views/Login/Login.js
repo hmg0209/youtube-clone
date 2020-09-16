@@ -11,11 +11,11 @@ const Login = (props) => {
 
   const changeEmail = (e) => {
     setEmail(e.currentTarget.value);
-  }
+  };
 
   const changePassword = (e) => {
     setPassword(e.currentTarget.value);
-  }
+  };
 
   const loginSubmit = (e) => {
     e.preventDefault();
@@ -23,18 +23,17 @@ const Login = (props) => {
     let body = {
       email,
       password,
-    }
+    };
 
-    dispatch(loginUser(body))
-      .then(res => {
-        if (res.payload.loginSuccess) {
-          props.history.push('/');
-          localStorage.setItem('userId', res.payload.userId);
-        } else {
-          alert('Error');
-        }
-      });
-  }
+    dispatch(loginUser(body)).then((res) => {
+      if (res.payload.loginSuccess) {
+        props.history.push('/');
+        localStorage.setItem('userId', res.payload.userId);
+      } else {
+        alert('Error');
+      }
+    });
+  };
 
   return (
     <div className="l-wrap l-wrap--narrow">
@@ -42,18 +41,30 @@ const Login = (props) => {
       <form onSubmit={loginSubmit}>
         <div className="form-g">
           <label className="label">email</label>
-          <input type="email" className="input" value={email} onChange={changeEmail}/>
+          <input
+            type="email"
+            className="input"
+            value={email}
+            onChange={changeEmail}
+          />
         </div>
         <div className="form-g">
           <label className="label">password</label>
-          <input type="password" className="input" value={password} onChange={changePassword}/>
+          <input
+            type="password"
+            className="input"
+            value={password}
+            onChange={changePassword}
+          />
         </div>
         <div className="func">
-          <button type="submit" className="btn btn--block">login</button>
+          <button type="submit" className="btn btn--block">
+            login
+          </button>
         </div>
       </form>
     </div>
-  )
-}
+  );
+};
 
 export default withRouter(Login);
