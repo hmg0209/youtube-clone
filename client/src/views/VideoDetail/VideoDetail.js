@@ -17,6 +17,11 @@ function VideoDetial(props) {
   const userId = localStorage.getItem('userId');
   const videoId = props.match.params.videoId;
 
+  const target =
+    process.env.NODE_ENV === 'development'
+      ? 'http://localhost:5000'
+      : 'https://stormy-journey-41513.herokuapp.com';
+
   useEffect(() => {
     let videoInfo = { videoId };
 
@@ -37,8 +42,8 @@ function VideoDetial(props) {
           <div className="detail__video video-box">
             <video
               className="video"
-              src={`http://localhost:5000/${videoDetail.filePath}`}
-              poster={`http://localhost:5000/${videoDetail.thumbnailPath}`}
+              src={`${target}/${videoDetail.filePath}`}
+              poster={`${target}/${videoDetail.thumbnailPath}`}
               controls
               autoPlay
             ></video>

@@ -10,13 +10,18 @@ function Card(props) {
   const minute = Math.floor(video.duration / 60);
   const sec = Math.floor(video.duration - minute * 60);
 
+  const target =
+  process.env.NODE_ENV === 'development'
+    ? 'http://localhost:5000'
+    : 'https://stormy-journey-41513.herokuapp.com';
+
   return (
     <div className="card" key={video.i}>
       <a className="card__link" href={`/video/${video._id}`}>
         <span className="card__img-box">
           <img
             className="card__img"
-            src={`http://localhost:5000/${video.thumbnailPath}`}
+            src={`${target}/${video.thumbnailPath}`}
             alt="썸네일"
           />
           <span className="card__duration">

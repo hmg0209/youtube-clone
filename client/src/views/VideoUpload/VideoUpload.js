@@ -12,6 +12,11 @@ const Catogory = [
   { value: 0, label: 'Sports' },
 ];
 
+const target =
+process.env.NODE_ENV === 'development'
+  ? 'http://localhost:5000'
+  : 'https://stormy-journey-41513.herokuapp.com';
+
 function VideoUpload(props) {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
@@ -110,7 +115,7 @@ function VideoUpload(props) {
             <div className="dropzone__thumbnail">
           {thumbnailPath && (
               <img
-                src={`http://localhost:5000/${thumbnailPath}`}
+                src={`${target}/${thumbnailPath}`}
                 alt="thumbnail"
               />
               )}

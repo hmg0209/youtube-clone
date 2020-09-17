@@ -6,6 +6,11 @@ import './side-video.scss';
 function SideVideo() {
   const [sideVideos, setSideVideos] = useState([]);
 
+  const target =
+  process.env.NODE_ENV === 'development'
+    ? 'http://localhost:5000'
+    : 'https://stormy-journey-41513.herokuapp.com';
+
   useEffect(() => {
     axios.get('/api/video/getVideo').then((res) => {
       if (res.data.success) {
@@ -25,7 +30,7 @@ function SideVideo() {
         <a href={`/video/${video._id}`} className="item__link">
           <span className="item__img-box">
             <img
-              src={`http://localhost:5000/${video.thumbnailPath}`}
+              src={`${target}/${video.thumbnailPath}`}
               className="item__img"
               alt="썸네일"
             ></img>
