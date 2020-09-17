@@ -12,10 +12,10 @@ const Catogory = [
   { value: 0, label: 'Sports' },
 ];
 
-const target =
-process.env.NODE_ENV === 'development'
-  ? 'http://localhost:5000'
-  : 'https://stormy-journey-41513.herokuapp.com';
+const target = 'https://stormy-journey-41513.herokuapp.com';
+// process.env.NODE_ENV === 'development'
+//   ? 'http://localhost:5000'
+//   : 'https://stormy-journey-41513.herokuapp.com';
 
 function VideoUpload(props) {
   const [title, setTitle] = useState('');

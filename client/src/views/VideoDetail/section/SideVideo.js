@@ -6,10 +6,10 @@ import './side-video.scss';
 function SideVideo() {
   const [sideVideos, setSideVideos] = useState([]);
 
-  const target =
-  process.env.NODE_ENV === 'development'
-    ? 'http://localhost:5000'
-    : 'https://stormy-journey-41513.herokuapp.com';
+  const target = 'https://stormy-journey-41513.herokuapp.com';
+  // process.env.NODE_ENV === 'development'
+  //   ? 'http://localhost:5000'
+  //   : 'https://stormy-journey-41513.herokuapp.com';
 
   useEffect(() => {
     axios.get('/api/video/getVideo').then((res) => {
