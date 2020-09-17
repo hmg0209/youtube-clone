@@ -26,14 +26,18 @@ function CommentItem(props) {
       responseTo: commentInfo._id,
     };
 
-    axios.post('/api/comment/saveComment', subCommentInfo).then((res) => {
-      if (res.data.success) {
-        props.refreshCommentList(res.data.result);
-        setComment('');
-      } else {
-        alert('코멘트 저장 실패');
-      }
-    });
+    if (localStorage.getItem('userId')) {
+      axios.post('/api/comment/saveComment', subCommentInfo).then((res) => {
+        if (res.data.success) {
+          props.refreshCommentList(res.data.result);
+          setComment('');
+        } else {
+          alert('코멘트 저장 실패');
+        }
+      });
+    } else {
+      alert('로그인 후 댓글을 남길 수 있습니다.');
+    }
   };
 
   return (

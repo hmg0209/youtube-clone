@@ -1,0 +1,106 @@
+@import '../../scss/variable';
+@import 'sass-mq/_mq.scss';
+
+.g {
+  &-table {
+    width: 100%;
+    font-size: 1.4rem;
+    text-align: center;
+    border: 1px solid $gray2;
+
+    thead {
+      background-color: $gray5;
+      color: $white;
+    }
+
+    tbody {
+      tr {
+        transition: 0.1s;
+
+        &:hover {
+          background-color: $gray1;
+        }
+      }
+    }
+
+    th,
+    td {
+      border-top: 1px solid $gray2;
+      border-left: 1px solid $gray2;
+    }
+
+    th {
+      font-weight: 300;
+    }
+
+    .depth {
+      background-color: $gray0;
+    }
+  }
+
+  &-title {
+    padding-bottom: 1.5rem;
+    margin: 12rem 0 4rem;
+    border-bottom: 1px solid $gray5;
+    text-transform: uppercase;
+
+    &:first-of-type {
+      margin-top: 3rem;
+    }
+  }
+}
+
+.heading-box {
+  display: flex;
+  align-items: center;
+  font-size: 1.4rem;
+
+  & + & {
+    margin-top: 2rem;
+  }
+
+  .h {
+    width: 5%;
+  }
+
+  .cont {
+    width: 75%;
+  }
+
+  .desc {
+    width: 10%;
+    text-align: center;
+  }
+}
+
+.colors-box {
+  display: flex;
+  justify-content: space-between;
+}
+
+.colors {
+  width: 30%;
+  &__item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-sizing: border-box;
+    height: 50px;
+    padding: 0 2rem;
+  }
+}
+
+.profiles {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.guide {
+  .func {
+    margin-top: 0;
+    
+    & + .func {
+      margin-top: 1rem;
+    }
+  }
+}

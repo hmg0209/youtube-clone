@@ -99,12 +99,12 @@ function LikeBtn(props) {
   };
 
   return (
-    <div>
+    <React.Fragment>
       <button type="button" onClick={clickLike}>
         좋아요{likeLength}
       </button>
       <button type="button" onClick={clickDisLike}>싫어요{disLikeLength}</button>
-    </div>
+    </React.Fragment>
   );
 }
 

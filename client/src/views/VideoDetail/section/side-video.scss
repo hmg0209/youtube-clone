@@ -2,6 +2,8 @@
 @import 'sass-mq/_mq.scss';
 
 .side-video {
+  box-sizing: border-box;
+  padding-left: 7rem;
   .item {
     &__link {
       display: flex;
@@ -10,7 +12,6 @@
     &__img-box {
       display: inline-block;
       width: 50%;
-      background: rosybrown;
     }
   }
 }

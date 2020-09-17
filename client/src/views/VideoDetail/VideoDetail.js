@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { withRouter } from 'react-router-dom';
+import moment from 'moment';
 
 import Profile from '../../components/Profile/Profile';
 import SideVideo from './section/SideVideo';
@@ -27,25 +28,27 @@ function VideoDetial(props) {
       }
     });
   }, [videoId]);
+  console.log(videoDetail);
 
   if (videoDetail.writer) {
     return (
       <div className="l-wrap detail">
         <section className="detail__section">
-          <div className="detail__video">
+          <div className="detail__video video-box">
             <video
+              className="video"
               src={`http://localhost:5000/${videoDetail.filePath}`}
               poster={`http://localhost:5000/${videoDetail.thumbnailPath}`}
               controls
+              autoPlay
             ></video>
           </div>
-          <div className="detail__desc">
-            <div className="user-box">
-              <Profile writer={videoDetail.writer}/>
-              <div className="user__cont">
-                <span className="user__name">{videoDetail.writer.name}</span>
-                <span className="user__desc">{videoDetail.description}</span>
-              </div>
+
+          <div className="detail__header">
+            <div className="detail__title">
+              <h1>{videoDetail.title}</h1>
+              <span>조회수 {videoDetail.views} 회</span> /
+              <span>{moment(videoDetail.createdAt).format('YYYY.MM.DD')}</span>
             </div>
             <div className="detail__util">
               <LikeButton
@@ -53,10 +56,28 @@ function VideoDetial(props) {
                 userId={localStorage.getItem('userId')}
                 videoId={videoId}
               />
-              {videoDetail.writer._id !== userId && (
-                <Subscribe writerId={videoDetail.writer._id} userId={userId} />
-              )}
             </div>
+          </div>
+
+          <div className="detail__box">
+            <div className="detail__cont">
+              <div className="user-box">
+                <Profile writer={videoDetail.writer} />
+                <div className="user__cont">
+                  <span className="user__name">{videoDetail.writer.name}</span>
+                  <span className="user__subscriber">구독자수 0명</span>
+                </div>
+              </div>
+              <div className="detail__subscribe">
+                {videoDetail.writer._id !== userId && (
+                  <Subscribe
+                    writerId={videoDetail.writer._id}
+                    userId={userId}
+                  />
+                )}
+              </div>
+            </div>
+            <div className="detail__desc">{videoDetail.description}</div>
           </div>
           <Comment videoId={videoId} />
         </section>

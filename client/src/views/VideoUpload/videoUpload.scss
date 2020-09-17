@@ -11,6 +11,10 @@
     width: 49%;
   }
 
+  &__thumbnail {
+    background-color: $gray0;
+  }
+
   &__input {
     position: relative;
     padding-top: 40%;

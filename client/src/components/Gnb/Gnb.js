@@ -32,22 +32,22 @@ const Gnb = (props) => {
         {user.userData && user.userData.isAuth ? (
           <ul className="gnb__list">
             <li className="gnb__d1">
-              <Link to="/subscription">subscription</Link>
+              <Link to="/subscription">구독</Link>
             </li>
             <li className="gnb__d1">
-              <Link to="/video/upload">video</Link>
+              <Link to="/video/upload">비디오 업로드</Link>
             </li>
             <li className="gnb__d1">
-              <button type="button" onClick={logout}>logout</button>
+              <button type="button" onClick={logout}>로그아웃</button>
             </li>
           </ul>
         ) : (
           <ul className="gnb__list">
             <li className="gnb__d1">
-              <Link to="/login">login</Link>
+              <Link to="/login">로그인</Link>
             </li>
             <li className="gnb__d1">
-              <Link to="/register">register</Link>
+              <Link to="/register">회원가입</Link>
             </li>
           </ul>
         )}

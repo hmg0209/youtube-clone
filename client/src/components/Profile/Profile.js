@@ -3,7 +3,6 @@ import React from 'react';
 import './profile.scss';
 
 function Profile(props) {
-  console.log(props.writer);
   const writer = props.writer;
   return (
     <div

@@ -36,14 +36,18 @@ function Comment(props) {
       content: comment,
     };
 
-    axios.post('/api/comment/saveComment', commentInfo).then((res) => {
-      if (res.data.success) {
-        refreshCommentList(res.data.result);
-        setComment('');
-      } else {
-        alert('코멘트 저장 실패');
-      }
-    });
+    if (localStorage.getItem('userId')) {
+      axios.post('/api/comment/saveComment', commentInfo).then((res) => {
+        if (res.data.success) {
+          refreshCommentList(res.data.result);
+          setComment('');
+        } else {
+          alert('코멘트 저장 실패');
+        }
+      });
+    } else {
+      alert('로그인 후 댓글을 남겨주세요. :)');
+    }
   };
 
   return (

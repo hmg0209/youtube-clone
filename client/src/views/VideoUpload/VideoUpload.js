@@ -107,14 +107,14 @@ function VideoUpload(props) {
               </div>
             )}
           </Dropzone>
-          {thumbnailPath && (
             <div className="dropzone__thumbnail">
+          {thumbnailPath && (
               <img
                 src={`http://localhost:5000/${thumbnailPath}`}
                 alt="thumbnail"
               />
+              )}
             </div>
-          )}
         </div>
         <div className="form-g">
           <label className="label">Title</label>

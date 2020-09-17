@@ -32,7 +32,7 @@ function Card(props) {
           <small className="card__user">{video.writer.name}</small>
           <small className="card__views">조회수 {video.views}회</small>
           <small className="card__date">
-            {moment(video.createdAt).format('MMM Do YY')}
+            {moment(video.createdAt).format('YYYY.MM.DD')}
           </small>
         </div>
       </div>

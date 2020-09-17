@@ -7,12 +7,16 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;500&display=swap');
 
 body {
+  color: $gray5;
   font-family: 'Noto Sans KR', sans-serif;
+  font-weight: 300;
+  line-height: 1.4;
+  letter-spacing: -0.025em;
 }
 
 .main {
   box-sizing: border-box;
-  min-height: calc(100vh - #{$h-header} - #{$h-footer});
+  min-height: calc(100vh - #{$h-header} - #{$h-footer} - 12rem);
   padding-top: 6rem;
 }
 
@@ -20,6 +24,27 @@ body {
   margin-bottom: 3rem;
 }
 
+.h1, .h2, .h3, .h4, .h5, .h6 {
+  color: $gray5;
+  font-weight: 500;
+  line-height: 1.2;
+}
+
+.h1 {
+  font-size: 5.4rem;
+}
+.h2 {
+  font-size: 4.2rem;
+}
+.h3 {
+  font-size: 3.6rem;
+}
+.h4 {
+  font-size: 3rem;
+}
+.h5 {
+  font-size: 2.4rem;
+}
 .h6 {
   font-size: 1.8rem;
 }
@@ -41,4 +66,64 @@ body {
   height: 1px;
   clip: rect(1px, 1px, 1px, 1px);
   clip-path: inset(50%);
+}
+
+.video-box {
+  position: relative;
+  overflow: hidden;
+  padding-top: 56.25%;
+  background-color: $black;
+}
+
+.video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+
+.table {
+  table-layout: fixed;
+  border-spacing: 0;
+  border-collapse: collapse;
+
+  th,
+  td {
+    padding: 5px 20px;
+  }
+}
+
+.link {
+  color: $gray3;
+  border-bottom: 1px solid $gray3;
+  transition: 0.1s;
+
+  &:hover {
+    color: $gray5;
+    border-bottom: 1px solid $gray5;
+  }
+}
+
+.flex-box {
+  display: flex;
+  margin: 0 -2rem;
+
+  & > [class^="item"] {
+    box-sizing: border-box;
+    padding: 0 2rem;
+  }
+
+  .item {
+    &-1of2 {
+      width:50%;
+    }
+
+    &-1of3 {
+      width:33.33%;
+    }
+
+    &-2of3 {
+      width:66.66%;
+    }
+  }
 }

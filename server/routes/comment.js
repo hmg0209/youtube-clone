@@ -6,7 +6,7 @@ const { Comment } = require('../models/Comment');
 // Comment
 //==================================================
 
-// 구독자수 정보
+// 댓글 저장
 router.post('/saveComment', (req, res) => {
   const comment = new Comment(req.body);
 
